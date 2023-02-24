@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "inquirer": "^6.5.0"
-  }
+  },
+  "devDependencies": {
+    "jest": "^29.4.3"
+  },
+  "name": "team-html-page-generator",
+  "description": "This application will take in information about employees on a software engineering team, then generate an HTML webpage that displays summaries for each person.",
+  "version": "1.0.0",
+  "main": "a nodeJS application athat generates cards for team members",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LisaMLorenz/Lisa-s-Team-Profile-Generator"
+  },
+  "keywords": [
+    "jest"
+  ],
+  "author": "Lisa Lorenz",
+  "license": "MIT"
 }
