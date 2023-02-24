@@ -13,12 +13,58 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 // Skeleton structure provided by class instructor Dan Mueller
-
+const employees = [];
 inquirer.prompt([{
     //manager questions
-}]).then(response => {
-    // populate manager info
-    // promptForNexEmployee ()
+    type: 'input',
+    name: 'name',
+    message: 'What is your name?',
+    validate: function (input) {
+        const name = input.trim();
+        if (!name || typeof name !== "string") {
+            return "Please enter a valid name.";
+        } else if (/\d/.test(name)) { // Check if the name contains any numbers
+            return "Name cannot contain numbers.";
+        } else if (/[^\w\s]/gi.test(name)) { // Check if the name contains any special symbols
+            return "Name cannot contain special symbols.";
+        } else {
+
+            return true;
+        }
+    }
+},
+
+{
+    type: 'input',
+    name: 'id',
+    message: 'What is your ID number?',
+    validate: function (input) {
+        const id = input.trim();
+        if (!id || !/^\d+$/.test(id)) {
+            return "Please enter a valid ID with digits only.";
+        }
+        return true;
+    }
+},
+
+
+{
+    type: 'input',
+    name: 'email',
+    message: 'What is your email?',
+    validate: function (input) {
+        const email = input.trim();
+        if (!email || !email.includes("@")) {
+            return "Please enter a valid email address.";
+        }
+        return true;
+    }
+},
+
+]).then(response => {
+    const manager = new Manager(response.name, response.id, response.email);
+    employees.push(manager);
+    promptForNextEmployee();
 })
 
 const promptForNextEmployee = () => {
@@ -53,5 +99,5 @@ const promptForIntern = () => {
 }
 
 const buildPage = () => {
-// render(myArrayOfTeamMembers)
+    // render(myArrayOfTeamMembers)
 }
