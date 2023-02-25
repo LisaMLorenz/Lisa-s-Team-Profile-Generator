@@ -70,11 +70,11 @@ Check out my [GitHub Repo](https://github.com/LisaMLorenz/Lisa-s-Team-Generator)
 
 Here are a few more screenshots to illustrate how to get started. Make sure to use `node index` in the terminal to start the process.
 
-![screenshot of this terminal in VS Code](/Lisa-s-Team-Profile-Generator/assets/terminal_prompts.png)
+![screenshot of this terminal in VS Code](assets/terminal_prompts.png)
 
 This is how your terminal prompts should look. Remember that you can make adjustments to change or add prompts.
 
-![screenshot of this terminal in VS Code](/Lisa-s-Team-Profile-Generator/assets/deployed_page.png)
+![screenshot of this terminal in VS Code](assets/deployed_page.png)
 
 Here's a screenshot of a possible deployed page.
 
