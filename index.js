@@ -14,7 +14,7 @@ const render = require("./src/page-template.js");
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 // Skeleton structure provided by class instructor Dan Mueller
 
-const employees = [];
+const employees = []; // array to hold team members
 
 inquirer.prompt([{
     //manager questions
@@ -92,6 +92,7 @@ const promptForNextEmployee = () => {
     },
 
     ]).then(response => {
+
         // if intern
 
         if (response.role === 'Intern') {
@@ -102,12 +103,11 @@ const promptForNextEmployee = () => {
         if (response.role === 'Engineer') {
             promptForEngineer(); //    promptForEngineer
         }
-        else {
+        else if (response.role === 'No more team members to add'){
             //    use the functionality from page-template to generate the team
             const html = render(employees);
             fs.writeFile(outputPath, html, function (err) {
                 if (err) throw err;
-                console.log('Team page generated!');
             });
         }
 
@@ -188,7 +188,9 @@ const promptForEngineer = () => {
 
 const promptForIntern = () => {
     inquirer.prompt([{
+
         //intern questions
+
         type: 'input',
         name: 'name',
         message: 'What is your name?',
@@ -196,12 +198,7 @@ const promptForIntern = () => {
             const name = input.trim();
             if (!name || typeof name !== "string") {
                 return "Please enter a valid name.";
-            } else if (/\d/.test(name)) { // Check if the name contains any numbers
-                return "Name cannot contain numbers.";
-            } else if (/[^\w\s]/.test(name)) { // Check if the name contains any special symbols
-                return "Name cannot contain special symbols.";
-            } else {
-
+            }{
                 return true;
             }
         }
@@ -219,7 +216,6 @@ const promptForIntern = () => {
             return true;
         }
     },
-
 
     {
         type: 'input',
@@ -244,12 +240,17 @@ const promptForIntern = () => {
                 return "Please enter a valid school name.";
             }
             return true;
+            console.log(input); 
         }
+        
     },
+
+    
 
     ]).then(response => {
         const intern = new Intern(response.name, response.id, response.email, response.school);
         employees.push(intern);
+        console.log(inter);
         promptForNextEmployee();
     })
 }
