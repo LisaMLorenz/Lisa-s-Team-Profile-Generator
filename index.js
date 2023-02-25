@@ -88,10 +88,15 @@ const promptForNextEmployee = () => {
         type: 'list',
         message: 'What is your role?',
         name: 'role',
-        choices: ['Engineer', 'Intern', 'No more team members to add']
+        choices: ['Engineer', 'Intern', 'Finish building the team']
     },
 
     ]).then(response => {
+
+        // else if engineer
+        if (response.role === 'Engineer') {
+            promptForEngineer(); //    promptForEngineer
+        }
 
         // if intern
 
@@ -99,11 +104,9 @@ const promptForNextEmployee = () => {
             promptForIntern(); //    promptForIntern
         }
 
-        // else if engineer
-        if (response.role === 'Engineer') {
-            promptForEngineer(); //    promptForEngineer
-        }
-        else if (response.role === 'No more team members to add'){
+        // if no more team members to add
+        
+        else if (response.role === 'Finish building the team'){
             //    use the functionality from page-template to generate the team
             const html = render(employees);
             fs.writeFile(outputPath, html, function (err) {
@@ -188,9 +191,6 @@ const promptForEngineer = () => {
 
 const promptForIntern = () => {
     inquirer.prompt([{
-
-        //intern questions
-
         type: 'input',
         name: 'name',
         message: 'What is your name?',
@@ -198,7 +198,12 @@ const promptForIntern = () => {
             const name = input.trim();
             if (!name || typeof name !== "string") {
                 return "Please enter a valid name.";
-            }{
+            } else if (/\d/.test(name)) { // Check if the name contains any numbers
+                return "Name cannot contain numbers.";
+            } else if (/[^\w\s]/.test(name)) { // Check if the name contains any special symbols
+                return "Name cannot contain special symbols.";
+            } else {
+
                 return true;
             }
         }
@@ -217,6 +222,7 @@ const promptForIntern = () => {
         }
     },
 
+
     {
         type: 'input',
         name: 'email',
@@ -233,24 +239,24 @@ const promptForIntern = () => {
     {
         type: 'input',
         name: 'school',
-        message: 'Which is your school?',
+        message: 'What is your school?',
         validate: function (input) {
-            const email = input.trim();
+            const school = input.trim();
             if (!school || typeof school !== "string") {
                 return "Please enter a valid school name.";
-            }
-            return true;
-            console.log(input); 
-        }
-        
-    },
+            } else if (/[^\w\s]/.test(school)) { // Check if the name contains any special symbols
+                return "School name cannot contain special symbols.";
+            } else {
 
-    
+                return true;
+            }
+
+        },
+    }
 
     ]).then(response => {
         const intern = new Intern(response.name, response.id, response.email, response.school);
         employees.push(intern);
-        console.log(inter);
         promptForNextEmployee();
     })
 }
