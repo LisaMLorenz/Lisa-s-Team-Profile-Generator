@@ -92,7 +92,7 @@ This project is licensed under the MIT license. Feel free to edit, share and com
 
 ## Collaborators <a name="toc-collaborate"></a>
 
-For now it's just - [Lisa Lorenz](https://github.com/LisaMLorenz). We are looking forward to welcome contributors though.
+For now - [Lisa Lorenz](https://github.com/LisaMLorenz). We are looking forward to welcome contributors though. Some starter code as indicated in comments supplied by [Dan Mueller](https://github.com/demuelle)
 
 ## How to Contribute <a name="toc-contribute"></a>
 If you would like to contribute to this project, please follow these steps:
